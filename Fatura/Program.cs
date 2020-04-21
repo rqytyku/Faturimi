@@ -17,9 +17,6 @@ namespace Fatura
 
             var listaefaturave = details.ListaFaturave();
 
-
-           
-
             // Shtimi dhe ruajtja ne Database
             Console.WriteLine("-----------------------------------------");
             Console.WriteLine("A doni te shtoni nje fature te re? Po/Jo");
@@ -78,25 +75,11 @@ namespace Fatura
             catch(Exception ex)
             {
                 Console.WriteLine(" Fatura nuk ekziston");
-                throw (ex);
+               
             }
             
 
-            ////////////////////// Shtimi dhe ruajtja ne Database
-            ////////////////////Console.WriteLine("-----------------------------------------");
-            ////////////////////var context = new StoreManagmentEntities();
-            ////////////////////var invoice = new Fatura()
-            ////////////////////{
-            ////////////////////    Fatura_ID = 1005,
-            ////////////////////    OrderDate = DateTime.Now,
-            ////////////////////    Total = 250,
-                
-            ////////////////////    ProductID = 102
-            ////////////////////};
-            ////////////////////context.Faturas.Add(invoice);
-            ////////////////////context.SaveChanges();
-            ////////////////////Console.WriteLine($"Fatura e re: {invoice.Fatura_ID}");
-            ////////////////////Console.ReadKey();
+           
         }
     }
 }
