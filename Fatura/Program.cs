@@ -18,38 +18,46 @@ namespace Fatura
             var listaefaturave = details.ListaFaturave();
 
 
+           
+
+            // Shtimi dhe ruajtja ne Database
+            Console.WriteLine("-----------------------------------------");
+            Console.WriteLine("A doni te shtoni nje fature te re? Po/Jo");
+            string answer = Console.ReadLine();
+            if (answer == "Po")
+            {
+                var context = new StoreManagmentEntities();
+                var invoice = new Fatura()
+                {
+
+                    ProductID = 102,
+                    CustomerID = 1,
+                    OrderDate = DateTime.Now
+
+                };
+                context.Faturas.Add(invoice);
+                context.SaveChanges();
+
+                Console.WriteLine("Fatura u ruajt me sukses");
+            }
+            else
+                Console.WriteLine("Ju vendoset te mos shtoni fature te re.");
+                Console.WriteLine("-----------------------------------------");
+
+            //Listimi i faturave
+
             if (listaefaturave.Any())
             {
                 foreach (var item in listaefaturave)
                 {
                     Console.WriteLine($"IdFature: {item.Fatura_ID}");
-                    Console.WriteLine($"Emer produkt: {item.Produkt.Product_Name}");
+                    //Console.WriteLine($"Emer produkt: {item.Produkt.Product_Name}");
                 }
             }
             else
-            { 
+            {
                 Console.WriteLine("Nuk u gjet asnje fature");
             }
-
-
-            // Shtimi dhe ruajtja ne Database
-            Console.WriteLine("-----------------------------------------");
-            var context = new StoreManagmentEntities();
-            var invoice = new Fatura()
-            {
-               
-               ProductID = 102,
-               CustomerID = 1,
-               OrderDate = DateTime.Now,
-               Total = 150
-                
-              
-               
-            };
-            context.Faturas.Add(invoice);
-            context.SaveChanges();
-
-            Console.WriteLine("Fatura u ruajt me sukses");
             // Detajet e fatures
             Console.WriteLine("Jep nr e fatures");
 
@@ -64,7 +72,7 @@ namespace Fatura
                 Console.WriteLine($"ID e konsumatorit: {fatura.CustomerID}");
                 Console.WriteLine($"ID e produkutit: {fatura.ProductID}");
                 Console.WriteLine($"Produktit: {fatura.Produkt.Product_Name}");
-                Console.WriteLine($"Shuma: {fatura.Total}");
+                Console.WriteLine($"Shuma: {fatura.Produkt.Cost}");
                 Console.ReadKey();
             }
             catch(Exception ex)
